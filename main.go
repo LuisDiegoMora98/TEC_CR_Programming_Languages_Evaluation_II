@@ -59,6 +59,14 @@ func main() {
 	fmt.Println("Busqueda de 55", comp, answer)
 
 	print(os.Stdout, tree.root, 0, 'M')
+  
+  /*
+  //For test 6 and 7
+	var unOrderedArray = []int {1000, 2, 3, 17, 50}
+	fmt.Println(Item6(unOrderedArray, 5, 17))
+	var orderedArray = []int {20, 40, 50, 75, 80, 82, 84, 86, 87, 88, 89, 90, 95, 100}
+	fmt.Println(Item7(orderedArray, 14, 86, 1))
+  */
 }
 
 // Item3 receive a map to create bar chart->  (label)Key: int, (value)value: float64
@@ -94,6 +102,35 @@ func Item3(values map[int]float64) {
 	f, _ := os.Create("output.png")
 	defer f.Close()
 	graph.Render(chart.PNG, f)
+}
+
+func Item6(pArray []int, pSize int, pValue int)(bool, int){
+	for index := 0; index < pSize; index++ {
+		if pArray[index] == pValue {
+			return true, index + 1
+		}
+	}
+	return false, 0
+}
+
+func Item7(pArray []int, pSize int, pValue int, pComparisons int)(bool, int){
+	if pSize == 0 {
+		return false, 0
+	}
+	if pSize <= 2 {
+		if (pArray[0] == pValue) || (pArray[1] == pValue) {
+			return true, pComparisons
+		}
+		return false, pComparisons
+	}
+	pivot := pSize / 2
+	if pArray[pivot] == pValue {
+		return true, pComparisons
+	}
+	if pArray[pivot] > pValue {
+		return Item7(pArray[:pivot], pivot, pValue,pComparisons + 1)
+	}
+	return Item7(pArray[pivot:], pSize - pivot, pValue,pComparisons + 1)
 }
 
 func Item8() {
