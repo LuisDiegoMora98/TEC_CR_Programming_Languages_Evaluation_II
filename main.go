@@ -5,21 +5,105 @@ package main
 
 import (
 	"fmt"
+	"github.com/wcharczuk/go-chart"
+	"io"
+	"os"
+	"sort"
+	"strconv"
 )
 
 func main() {
-	fmt.Println("Evaluation 2 for Programming Languages:")
+	fmt.Println("Hello")
+
+	_ = map[int]float64{
+		1: 100.0,
+		2: 94.88,
+		3: 4.74,
+		4: 3.22,
+		5: 3,
+		6: 2.27,
+		7: 1,
+	}
+	//Item3(valuesMap)
+	tree := &BinaryTree{}
+	_, comp := tree.insert(5)
+	fmt.Println(comp)
+	_, comp = tree.insert(20)
+	fmt.Println(comp)
+	_, comp = tree.insert(50)
+	fmt.Println(comp)
+	_, comp = tree.insert(15)
+	fmt.Println(comp)
+	_, comp = tree.insert(60)
+	fmt.Println(comp)
+	_, comp = tree.insert(50)
+	fmt.Println(comp)
+	_, comp = tree.insert(60)
+	fmt.Println(comp)
+	_, comp = tree.insert(55)
+	fmt.Println(comp)
+	_, comp = tree.insert(85)
+	fmt.Println(comp)
+	_, comp = tree.insert(15)
+	fmt.Println(comp)
+	_, comp = tree.insert(5)
+	fmt.Println(comp)
+	_, comp = tree.insert(10)
+	fmt.Println(comp)
+	_, comp = tree.insert(2)
+	fmt.Println(comp)
+	_, comp = tree.insert(1)
+	fmt.Println(comp)
+	var answer bool
+	answer, comp = tree.search(55)
+	fmt.Println("Busqueda de 55", comp, answer)
+
+	print(os.Stdout, tree.root, 0, 'M')
+  
+  /*
+  //For test 6 and 7
 	var unOrderedArray = []int {1000, 2, 3, 17, 50}
 	fmt.Println(Item6(unOrderedArray, 5, 17))
 	var orderedArray = []int {20, 40, 50, 75, 80, 82, 84, 86, 87, 88, 89, 90, 95, 100}
 	fmt.Println(Item7(orderedArray, 14, 86, 1))
+  */
 }
 
-/*6. Diseñar y construir una función que haga la búsqueda de un valor entero (la llave) en un arreglo que no
-esté ordenado, mediante el algoritmo de búsqueda secuencial. La función debe retornar un par ordenado:
-un valor booleano que indique si encontró la llave buscada (true = la encontró, false = no la encontró),
-junto con un entero que indique la cantidad de comparaciones realizadas hasta determinar si la llave está o
-no presente en el arreglo.*/
+// Item3 receive a map to create bar chart->  (label)Key: int, (value)value: float64
+func Item3(values map[int]float64) {
+
+	//Sort of the Numbers in the map
+	keys := make([]int, 0, len(values))
+	for k := range values {
+		keys = append(keys, k)
+	}
+	sort.Ints(keys)
+
+	//Adding the values to the Bar Values List
+	var charValues []chart.Value
+	for _, k := range keys {
+		valV := values[k]
+		valL := strconv.Itoa(k)
+		charValues = append(charValues, chart.Value{Label: valL, Value: valV})
+	}
+
+	graph := chart.BarChart{
+		Title: "Number Aparition Bar Chart",
+		Background: chart.Style{
+			Padding: chart.Box{
+				Top: 40,
+			},
+		},
+		Height:   512,
+		BarWidth: 60,
+		Bars:     charValues,
+	}
+
+	f, _ := os.Create("output.png")
+	defer f.Close()
+	graph.Render(chart.PNG, f)
+}
+
 func Item6(pArray []int, pSize int, pValue int)(bool, int){
 	for index := 0; index < pSize; index++ {
 		if pArray[index] == pValue {
@@ -29,15 +113,6 @@ func Item6(pArray []int, pSize int, pValue int)(bool, int){
 	return false, 0
 }
 
-/*Diseñar y construir una función que haga la búsqueda de un valor entero (la llave) en un arreglo que esté
-ordenado, mediante el algoritmo de búsqueda binaria. La función debe retornar un par ordenado: un valor
-booleano que indique si encontró la llave buscada (true = la encontró, false = no la encontró), junto con un
-entero que indique la cantidad de comparaciones realizadas hasta determinar si la llave está o no presente
-en el arreglo.*/
-/*
-		20 40 50 75 80 82 84 86 87 88 89 90 95 100
-	90					                 *
-*/
 func Item7(pArray []int, pSize int, pValue int, pComparisons int)(bool, int){
 	if pSize == 0 {
 		return false, 0
@@ -58,10 +133,94 @@ func Item7(pArray []int, pSize int, pValue int, pComparisons int)(bool, int){
 	return Item7(pArray[pivot:], pSize - pivot, pValue,pComparisons + 1)
 }
 
-/*11. Diseñar y construir una función que transforme un árbol binario de búsqueda ordinario en un árbol binario
-de búsqueda quasi-completo, conforme lo logra el algoritmo DSW. Un árbol de altura (o profundidad) a es
-quasi-completo cuando los nodos más profundos se encuentran todos en los niveles a o a – 1. Base su
-función en el algoritmo DSW (Day-Stout-Warren); ver referencias al final y en el tecDigital.*/
-func Item11(){
+func Item8() {
 
+}
+
+// BinaryNode and BinaryTree : Item 8
+// nil is the null for maps, structs and similar structures, default value when not initialized
+
+type BinaryNode struct {
+	left  *BinaryNode
+	right *BinaryNode
+	value int
+}
+
+type BinaryTree struct {
+	root *BinaryNode
+}
+
+// Item 9
+// Inspired on https://www.golangprograms.com/golang-program-to-implement-binary-tree.html
+
+// Insertion from root value
+// insert comparisons starts in 1, and ++ every recurrent insert
+// receive the newValue and ,by reference the tree, returns the node itself and the comparisons number
+func (tree *BinaryTree) insert(newValue int) (*BinaryTree, int) {
+	comparisons := 1
+	if tree.root == nil {
+		tree.root = &BinaryNode{value: newValue, left: nil, right: nil}
+	} else {
+		comparisons = tree.root.insert(newValue, comparisons)
+	}
+	return tree, comparisons
+}
+
+// Recursive insertion for the binary tree
+// insert pass the current node, compares to newValue and recurse if needed, returns the comparisons number
+func (currentNode *BinaryNode) insert(newValue int, comparisons int) int {
+	comparisons++
+	if currentNode == nil || currentNode.value == newValue { // Avoid repeated numbers insertion
+		return comparisons
+	} else if newValue < currentNode.value { //change to <= if you want equal values on right, < on left
+		if currentNode.left == nil {
+			currentNode.left = &BinaryNode{value: newValue, left: nil, right: nil}
+		} else {
+			comparisons = currentNode.left.insert(newValue, comparisons)
+		}
+	} else {
+		if currentNode.right == nil {
+			currentNode.right = &BinaryNode{value: newValue, left: nil, right: nil}
+		} else {
+			comparisons = currentNode.right.insert(newValue, comparisons)
+		}
+	}
+	return comparisons
+}
+
+// Item 10
+func (tree *BinaryTree) search(searchValue int) (bool, int) {
+	comparisons := 1
+	answer := false
+	if tree.root != nil {
+		answer, comparisons = tree.root.search(searchValue, comparisons, answer)
+	}
+	return answer, comparisons
+}
+
+func (currentNode *BinaryNode) search(searchValue int, comparisons int, answer bool) (bool, int) {
+	comparisons++
+	if currentNode.value == searchValue {
+		answer = true
+	} else if searchValue < currentNode.value {
+		if currentNode.left != nil {
+			answer, comparisons = currentNode.left.search(searchValue, comparisons, answer)
+		}
+	} else if currentNode.right != nil {
+		answer, comparisons = currentNode.right.search(searchValue, comparisons, answer)
+	}
+	return answer, comparisons
+}
+
+func print(w io.Writer, node *BinaryNode, ns int, ch rune) {
+	if node == nil {
+		return
+	}
+
+	for i := 0; i < ns; i++ {
+		fmt.Fprint(w, " ")
+	}
+	fmt.Fprintf(w, "%c:%v\n", ch, node.value)
+	print(w, node.left, ns+2, 'L')
+	print(w, node.right, ns+2, 'R')
 }
