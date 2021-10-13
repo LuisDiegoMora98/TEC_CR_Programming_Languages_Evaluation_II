@@ -39,7 +39,7 @@ func lcg(a, c, m, semilla uint32) func() uint32 {
 }
 
 func msg(semilla uint32) func() uint32 {
-	g := lcg(214013, 2531011, 2048, semilla)
+	g := lcg(214013, 0, 2048, semilla)
 	return func() uint32 {
 		return g()
 	}

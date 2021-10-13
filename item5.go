@@ -1,4 +1,4 @@
-package main5
+package main
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func main5() {
+func main() {
 	slice := generateArray(20)
 	fmt.Println("\n--- Desordenados --- \n\n", slice)
 	quicksort(slice)
