@@ -5,17 +5,22 @@ package main
 
 import (
 	"fmt"
-	"github.com/wcharczuk/go-chart"
 	"io"
 	"os"
 	"sort"
 	"strconv"
+
+	"github.com/wcharczuk/go-chart"
 )
 
 func main() {
 	fmt.Println("Hello")
 
-	_ = map[int]float64{
+	fmt.Println(item3([]int{1, 2, 43, 88, 10}, 18))
+	fmt.Println(item3([]int{1, 2, 43, 88, 10}, 10))
+	fmt.Println("Hello")
+
+	valuesMap := map[int]float64{
 		1: 100.0,
 		2: 94.88,
 		3: 4.74,
@@ -24,7 +29,7 @@ func main() {
 		6: 2.27,
 		7: 1,
 	}
-	//Item3(valuesMap)
+	Item2(valuesMap)
 	tree := &BinaryTree{}
 	_, comp := tree.insert(5)
 	fmt.Println(comp)
@@ -61,8 +66,8 @@ func main() {
 	print(os.Stdout, tree.root, 0, 'M')
 }
 
-// Item3 receive a map to create bar chart->  (label)Key: int, (value)value: float64
-func Item3(values map[int]float64) {
+// Item2 receive a map to create bar chart->  (label)Key: int, (value)value: float64
+func Item2(values map[int]float64) {
 
 	//Sort of the Numbers in the map
 	keys := make([]int, 0, len(values))
@@ -186,4 +191,19 @@ func print(w io.Writer, node *BinaryNode, ns int, ch rune) {
 	fmt.Fprintf(w, "%c:%v\n", ch, node.value)
 	print(w, node.left, ns+2, 'L')
 	print(w, node.right, ns+2, 'R')
+}
+
+//Item 3, receive an int Array and a nalue to insert, then it compares all elements in the array to the new value
+//returns the number of comparisons until the number insertion or to determine the number is already in the array
+func item3(arrayTo []int, newValue int) int {
+	comparisons := 0
+	for k := range arrayTo {
+		if arrayTo[k] == newValue {
+			return comparisons
+		}
+		comparisons++
+	}
+	arrayTo = append(arrayTo, newValue)
+	fmt.Println(arrayTo)
+	return comparisons
 }
