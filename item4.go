@@ -1,18 +1,10 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	"math/rand"
 	"time"
 )
-
-func main() {
-
-	slice := generateArray(25)
-	fmt.Println("\n--- Desordenados --- \n\n", slice)
-	selectionsort(slice)
-	fmt.Println("\n--- Ordenados ---\n\n", slice)
-}
 
 // Genera un array con numeros aleatorios
 func generateArray(size int) []int {
@@ -37,3 +29,8 @@ func selectionsort(items []int) {
 		items[i], items[minIdx] = items[minIdx], items[i]
 	}
 }
+
+//slice := generateArray(20)
+	//fmt.Println("\n--- Desordenados --- \n\n", slice)
+	//quicksort(slice)
+	//fmt.Println("\n--- Ordenados ---\n\n", slice)
