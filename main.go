@@ -11,7 +11,24 @@ import (
 func main() {
 	fmt.Println("Hello")
 
-	valuesMap := map[int]float64{
+	/*randomsArray := experimento_a()
+	for k := range randomsArray {
+		experimento_b(randomsArray[k], strconv.Itoa((len(randomsArray[k])))+" Numbers")
+	}*/
+
+	A := gen_array(100)
+	/*	B := gen_array(400)
+		C := gen_array(600)
+		D := gen_array(800)
+		E := gen_array(1000)
+		experimento_b(A, "100 Numbers")
+		experimento_b(B, "400 Numbers")
+		experimento_b(C, "600 Numbers")
+		experimento_b(D, "800 Numbers")
+		experimento_b(E, "1000 Numbers")*/
+	experimento_c(A)
+
+	_ = map[int]float64{
 		1: 100.0,
 		2: 94.88,
 		3: 4.74,
@@ -20,7 +37,7 @@ func main() {
 		6: 2.27,
 		7: 1,
 	}
-	Item2(valuesMap)
+	//Item2(valuesMap)
 	tree := &BinaryTree{}
 	_, comp := tree.insert(5)
 	fmt.Println(comp)

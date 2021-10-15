@@ -22,7 +22,7 @@ func gen_random_prime() int {
 	rand.Seed(time.Now().UnixNano())
 	randint := rand.Intn(max-min) + min
 	val := is_prime(4)
-	for val == false { // emulates while
+	for !val { // emulates while
 		// do something
 		randint = rand.Intn(max-min) + min
 		val = is_prime(randint)
@@ -39,28 +39,32 @@ func lcg(a, c, m, semilla uint32) func() uint32 {
 }
 
 func msg(semilla uint32) func() uint32 {
-	g := lcg(214013, 0, 2048, semilla)
+	g := lcg(214013, 2531011, 2048, semilla)
 	return func() uint32 {
-		return g()
+		return g() % (1 << 16)
 	}
 }
 
 func gen_array(n int) []int {
 	fmt.Println("\n--- Generando: --- ")
-	slice := make([]int, n, n)
+	slice := make([]int, n)
 	semilla := gen_random_prime()
 	fmt.Println("\n--- Valor semilla: --- ", semilla)
 	n_semilla := uint32(semilla)
 	msf := msg(n_semilla)
 	for i := 0; i < n; i++ {
 		temp := msf()
-		slice[i] = int(temp) % 54
-		//fmt.Printf("%d\n", slice[i])
+
+		slice[i] = int(temp)
+		fmt.Printf("%d ", slice[i])
+		slice[i] = slice[i] % 54
+
 	}
+	fmt.Printf("\n")
 	return slice
 }
 
-func main() {
+/*func main() {
 	A := gen_array(100)
 	B := gen_array(400)
 	C := gen_array(600)
@@ -86,4 +90,4 @@ func main() {
 	for _, value := range E {
 		fmt.Printf("%d ", value)
 	}
-}
+}*/

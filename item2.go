@@ -8,7 +8,7 @@ import (
 )
 
 // Item2 receive a map to create bar chart->  (label)Key: int, (value)value: float64
-func Item2(values map[int]float64) {
+func Item2(values map[int]float64, title string) {
 
 	//Sort of the Numbers in the map
 	keys := make([]int, 0, len(values))
@@ -26,7 +26,7 @@ func Item2(values map[int]float64) {
 	}
 
 	graph := chart.BarChart{
-		Title: "Number Aparition Bar Chart",
+		Title: title,
 		Background: chart.Style{
 			Padding: chart.Box{
 				Top: 40,
@@ -37,7 +37,7 @@ func Item2(values map[int]float64) {
 		Bars:     charValues,
 	}
 
-	f, _ := os.Create("output.png")
+	f, _ := os.Create(title + "_output.png")
 	defer f.Close()
 	graph.Render(chart.PNG, f)
 }
