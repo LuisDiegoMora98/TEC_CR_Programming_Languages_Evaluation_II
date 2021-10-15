@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+import "os"
 
 func experimento_a() [][]int {
 	A := gen_array(100)
@@ -33,4 +34,27 @@ func experimento_c(arrayA []int) {
 		//fmt.Println(TS[:])
 	}
 
+}
+
+func experimento_d(arrayA []int) {
+	//EXPERIMENTO D
+	TOS := arrayA
+	selectionsort(TOS)
+	fmt.Println("\n--- Ordenados ---\n\n", TOS)
+}
+
+func experimento_e(arrayA []int) {
+	//EXPERIMENTO E
+	TOQ := arrayA
+	quicksort(TOQ)
+	fmt.Println("\n--- Ordenados ---\n\n", TOQ)
+}
+
+func experimento_f(arrayA []int) {
+	//EXPERIMENTO F
+	Abb := &BinaryTree{}
+	for _, value := range arrayA {
+		Abb.insert(value)
+	}
+	print(os.Stdout, Abb.root, 0, 'M')
 }

@@ -27,6 +27,9 @@ func main() {
 		experimento_b(D, "800 Numbers")
 		experimento_b(E, "1000 Numbers")*/
 	experimento_c(A)
+	experimento_f(A)
+	experimento_d(A)
+	experimento_e(A)
 
 	_ = map[int]float64{
 		1: 100.0,
@@ -72,39 +75,4 @@ func main() {
 	fmt.Println("Busqueda de 55", comp, answer)
 
 	print(os.Stdout, tree.root, 0, 'M')
-
-	A := gen_array(100)
-	B := gen_array(400)
-	C := gen_array(600)
-	D := gen_array(800)
-	E := gen_array(1000)
-
-	for _, value := range A {
-		fmt.Printf("%d ", value)
-	}
-	fmt.Printf("\n")
-	for _, value := range B {
-		fmt.Printf("%d ", value)
-	}
-	fmt.Printf("\n")
-	for _, value := range C {
-		fmt.Printf("%d ", value)
-	}
-	fmt.Printf("\n")
-	for _, value := range D {
-		fmt.Printf("%d ", value)
-	}
-	fmt.Printf("\n")
-	for _, value := range E {
-		fmt.Printf("%d ", value)
-	}
-
-	TOS := A
-	selectionsort(TOS)
-	fmt.Println("\n--- Ordenados ---\n\n", TOS)
-
-	TOQ := A
-	quicksort(TOQ)
-	fmt.Println("\n--- Ordenados ---\n\n", TOQ)
-
 }
