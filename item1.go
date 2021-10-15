@@ -45,7 +45,7 @@ func msg(semilla uint32) func() uint32 {
 	}
 }
 
-func gen_array(n int) {
+func gen_array(n int) []int {
 	fmt.Println("\n--- Generando: --- ")
 	slice := make([]int, n, n)
 	semilla := gen_random_prime()
@@ -55,10 +55,35 @@ func gen_array(n int) {
 	for i := 0; i < n; i++ {
 		temp := msf()
 		slice[i] = int(temp) % 54
-		fmt.Printf("%d\n", slice[i])
+		//fmt.Printf("%d\n", slice[i])
 	}
+	return slice
 }
 
 func main() {
-	gen_array(100)
+	A := gen_array(100)
+	B := gen_array(400)
+	C := gen_array(600)
+	D := gen_array(800)
+	E := gen_array(1000)
+
+	for _, value := range A {
+		fmt.Printf("%d ", value)
+	}
+	fmt.Printf("\n")
+	for _, value := range B {
+		fmt.Printf("%d ", value)
+	}
+	fmt.Printf("\n")
+	for _, value := range C {
+		fmt.Printf("%d ", value)
+	}
+	fmt.Printf("\n")
+	for _, value := range D {
+		fmt.Printf("%d ", value)
+	}
+	fmt.Printf("\n")
+	for _, value := range E {
+		fmt.Printf("%d ", value)
+	}
 }
