@@ -61,3 +61,25 @@ func experimento_h(Distr [54]int, num string) {
 	fmt.Println(Distr)
 	Item2(values, "Distr, "+num+" Elementos")
 }
+
+func experimento_i(arreglo []int) {
+
+}
+
+//Using the item7, search in a sorted array via quicksort for 10000 values, get the number of comparisons
+func experimento_i_3(arreglo []int, busqueda []int) int {
+	var comparisons int
+	for k := range arreglo {
+		_, comparisons = Item7(busqueda, len(arreglo), arreglo[k], comparisons)
+	}
+	return comparisons
+}
+
+//Using the item10, search in a binary tree 10000 values, get the number of comparisons
+func experimento_i_4(arreglo []int, tree BinaryTree) int {
+	var comparisons int
+	for k := range arreglo {
+		_, comparisons = tree.search(arreglo[k])
+	}
+	return comparisons
+}
