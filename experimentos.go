@@ -13,18 +13,12 @@ func experimento_a() [][]int {
 	return lista
 }
 
-func experimento_b(arrayA []int, title string) {
+func experimento_b(arrayA []int) [54]int {
 	var aparitions [54]int
 	for k := range arrayA {
 		aparitions[arrayA[k]]++
 	}
-
-	values := make(map[int]float64)
-	for k := range aparitions {
-		values[k] = float64(aparitions[k])
-	}
-	fmt.Println(aparitions)
-	Item2(values, title)
+	return aparitions
 }
 
 func experimento_c(arrayA []int) {
@@ -57,4 +51,13 @@ func experimento_f(arrayA []int) {
 		Abb.insert(value)
 	}
 	print(os.Stdout, Abb.root, 0, 'M')
+}
+
+func experimento_h(Distr [54]int, num string) {
+	values := make(map[int]float64)
+	for k := range Distr {
+		values[k] = float64(Distr[k])
+	}
+	fmt.Println(Distr)
+	Item2(values, "Distr, "+num+" Elementos")
 }
