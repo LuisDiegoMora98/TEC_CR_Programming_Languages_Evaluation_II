@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 func experimento_a() [][]int {
 	A := gen_array(100)
@@ -44,13 +46,14 @@ func experimento_e(arrayA []int) {
 	fmt.Println("\n--- Ordenados ---\n\n", TOQ)
 }
 
-func experimento_f(arrayA []int) {
+func experimento_f(arrayA []int) *BinaryTree {
 	//EXPERIMENTO F
 	Abb := &BinaryTree{}
 	for _, value := range arrayA {
 		Abb.insert(value)
 	}
 	print(os.Stdout, Abb.root, 0, 'M')
+	return Abb
 }
 
 func experimento_h(Distr [54]int, num string) {
@@ -62,8 +65,26 @@ func experimento_h(Distr [54]int, num string) {
 	Item2(values, "Distr, "+num+" Elementos")
 }
 
-func experimento_i(arreglo []int) {
+//Using the item6, search in array 10000 values, get the number of comparisons
+func experimento_i_1(arr_generado []int, arr_busqueda []int) int {
+	var counter int
+	var temp int
+	for k := range arr_generado {
+		_, temp = Item6(arr_busqueda, len(arr_generado), arr_generado[k])
+		counter += temp
+	}
+	return counter
+}
 
+//Using the item6, search in array 10000 values, get the number of comparisons
+func experimento_i_2(arr_generado []int, arr_busqueda []int) int {
+	var counter int
+	var temp int
+	for k := range arr_generado {
+		_, temp = Item7(arr_busqueda, len(arr_generado), arr_generado[k], counter)
+		counter += temp
+	}
+	return counter
 }
 
 //Using the item7, search in a sorted array via quicksort for 10000 values, get the number of comparisons

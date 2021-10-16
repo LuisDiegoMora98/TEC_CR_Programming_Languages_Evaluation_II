@@ -27,7 +27,7 @@ func main() {
 		experimento_b(D, "800 Numbers")
 		experimento_b(E, "1000 Numbers")*/
 	experimento_c(A)
-	experimento_f(A)
+	//Abb := experimento_f(A)
 	experimento_d(A)
 	experimento_e(A)
 
