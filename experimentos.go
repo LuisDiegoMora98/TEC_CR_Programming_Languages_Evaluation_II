@@ -70,7 +70,8 @@ func experimento_i(arreglo []int) {
 func experimento_i_3(arreglo []int, busqueda []int) int {
 	var comparisons int
 	for k := range arreglo {
-		_, comparisons = Item7(busqueda, len(arreglo), arreglo[k], comparisons)
+		_, aux := Item7(busqueda, len(arreglo), arreglo[k], comparisons)
+		comparisons += aux
 	}
 	return comparisons
 }
@@ -79,7 +80,8 @@ func experimento_i_3(arreglo []int, busqueda []int) int {
 func experimento_i_4(arreglo []int, tree BinaryTree) int {
 	var comparisons int
 	for k := range arreglo {
-		_, comparisons = tree.search(arreglo[k])
+		_, aux := tree.search(arreglo[k])
+		comparisons += aux
 	}
 	return comparisons
 }
