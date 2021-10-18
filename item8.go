@@ -10,9 +10,10 @@ import (
 // nil is the null for maps, structs and similar structures, default value when not initialized
 
 type BinaryNode struct {
-	left  *BinaryNode
-	right *BinaryNode
-	value int
+	parent *BinaryNode
+	left   *BinaryNode
+	right  *BinaryNode
+	value  int
 }
 
 type BinaryTree struct {

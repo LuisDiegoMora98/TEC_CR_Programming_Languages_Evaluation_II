@@ -1,10 +1,6 @@
 package main
 
-import (
-	//"fmt"
-)
-
-func selectionsort(items []int) {
+func selectionsort(items []int) []int {
 	var n = len(items)
 	for i := 0; i < n; i++ {
 		var minIdx = i
@@ -15,6 +11,5 @@ func selectionsort(items []int) {
 		}
 		items[i], items[minIdx] = items[minIdx], items[i]
 	}
+	return items
 }
-
-	

@@ -9,7 +9,7 @@ package main
 func (tree *BinaryTree) insert(newValue int) (*BinaryTree, int) {
 	comparisons := 1
 	if tree.root == nil {
-		tree.root = &BinaryNode{value: newValue, left: nil, right: nil}
+		tree.root = &BinaryNode{value: newValue, parent: nil, left: nil, right: nil}
 	} else {
 		comparisons = tree.root.insert(newValue, comparisons)
 	}
@@ -24,13 +24,13 @@ func (currentNode *BinaryNode) insert(newValue int, comparisons int) int {
 		return comparisons
 	} else if newValue < currentNode.value { //change to <= if you want equal values on right, < on left
 		if currentNode.left == nil {
-			currentNode.left = &BinaryNode{value: newValue, left: nil, right: nil}
+			currentNode.left = &BinaryNode{value: newValue, parent: currentNode, left: nil, right: nil}
 		} else {
 			comparisons = currentNode.left.insert(newValue, comparisons)
 		}
 	} else {
 		if currentNode.right == nil {
-			currentNode.right = &BinaryNode{value: newValue, left: nil, right: nil}
+			currentNode.right = &BinaryNode{value: newValue, parent: currentNode, left: nil, right: nil}
 		} else {
 			comparisons = currentNode.right.insert(newValue, comparisons)
 		}

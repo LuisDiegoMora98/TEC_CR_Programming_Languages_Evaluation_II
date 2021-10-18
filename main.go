@@ -5,74 +5,133 @@ package main
 
 import (
 	"fmt"
-	"os"
 )
 
 func main() {
 	fmt.Println("Hello")
 
-	/*randomsArray := experimento_a()
-	for k := range randomsArray {
-		experimento_b(randomsArray[k], strconv.Itoa((len(randomsArray[k])))+" Numbers")
-	}*/
+	// Se generan las listas con el respectivo contenido, para 200, 400, 600, 800 y 1000 elementos
+	item1 := experimento_a()
+	array10000 := gen_array(10000)
 
-	A := gen_array(100)
-	/*	B := gen_array(400)
-		C := gen_array(600)
-		D := gen_array(800)
-		E := gen_array(1000)
-		experimento_b(A, "100 Numbers")
-		experimento_b(B, "400 Numbers")
-		experimento_b(C, "600 Numbers")
-		experimento_b(D, "800 Numbers")
-		experimento_b(E, "1000 Numbers")*/
-	experimento_c(A)
-	//Abb := experimento_f(A)
-	experimento_d(A)
-	experimento_e(A)
-
-	_ = map[int]float64{
-		1: 100.0,
-		2: 94.88,
-		3: 4.74,
-		4: 3.22,
-		5: 3,
-		6: 2.27,
-		7: 1,
+	//EXPERIMENTO CON 200 elementos
+	Distr := experimento_b(item1[0])
+	TS := experimento_c(item1[1])
+	TOS := experimento_d(item1[0])
+	TOQ := experimento_e(item1[0])
+	ABB := experimento_f(item1[0])
+	//experimento_g(item1[0])		//necesario item 11
+	experimento_h(Distr, "200")
+	//Experimentos i
+	comparacionesTS := experimento_i_1(array10000, TS)
+	comparacionesTOS := experimento_i_2(array10000, TOS)
+	comparacionesTOQ := experimento_i_3(array10000, TOQ)
+	comparacionesABB := experimento_i_4(array10000, *ABB)
+	experimentoi := map[string]float64{
+		"TS":  float64(comparacionesTS),
+		"TOS": float64(comparacionesTOS),
+		"TOQ": float64(comparacionesTOQ),
+		"ABB": float64(comparacionesABB),
 	}
-	//Item2(valuesMap)
-	tree := &BinaryTree{}
-	_, comp := tree.insert(5)
-	fmt.Println(comp)
-	_, comp = tree.insert(20)
-	fmt.Println(comp)
-	_, comp = tree.insert(50)
-	fmt.Println(comp)
-	_, comp = tree.insert(15)
-	fmt.Println(comp)
-	_, comp = tree.insert(60)
-	fmt.Println(comp)
-	_, comp = tree.insert(50)
-	fmt.Println(comp)
-	_, comp = tree.insert(60)
-	fmt.Println(comp)
-	_, comp = tree.insert(55)
-	fmt.Println(comp)
-	_, comp = tree.insert(85)
-	fmt.Println(comp)
-	_, comp = tree.insert(15)
-	fmt.Println(comp)
-	_, comp = tree.insert(5)
-	fmt.Println(comp)
-	_, comp = tree.insert(10)
-	fmt.Println(comp)
-	_, comp = tree.insert(2)
-	fmt.Println(comp)
-	_, comp = tree.insert(1)
-	fmt.Println(comp)
-	var answer bool
-	answer, comp = tree.search(55)
-	fmt.Println("Busqueda de 55", comp, answer)
+	Item2Palabras(experimentoi, "Experimento i, 200 Elementos")
 
-	print(os.Stdout, tree.root, 0, 'M')
+	//EXPERIMENTO CON 400 elementos
+	Distr = experimento_b(item1[1])
+	TS = experimento_c(item1[1])
+	TOS = experimento_d(item1[1])
+	TOQ = experimento_e(item1[1])
+	ABB = experimento_f(item1[1])
+	//experimento_g(item1[1])		//necesario item 11
+	experimento_h(Distr, "400")
+	//Experimentos i
+	comparacionesTS = experimento_i_1(array10000, TS)
+	comparacionesTOS = experimento_i_2(array10000, TOS)
+	comparacionesTOQ = experimento_i_3(array10000, TOQ)
+	comparacionesABB = experimento_i_4(array10000, *ABB)
+	experimentoi = map[string]float64{
+		"TS":  float64(comparacionesTS),
+		"TOS": float64(comparacionesTOS),
+		"TOQ": float64(comparacionesTOQ),
+		"ABB": float64(comparacionesABB),
+	}
+	Item2Palabras(experimentoi, "Experimento i, 400 Elementos")
+	fmt.Println(comparacionesTS)
+	fmt.Println(comparacionesTOS)
+	fmt.Println(comparacionesTOQ)
+	fmt.Println(comparacionesABB)
+
+	//EXPERIMENTO CON 600 elementos
+	Distr = experimento_b(item1[2])
+	TS = experimento_c(item1[2])
+	TOS = experimento_d(item1[2])
+	TOQ = experimento_e(item1[2])
+	ABB = experimento_f(item1[2])
+	//experimento_g(item1[2])		//necesario item 11
+	experimento_h(Distr, "600")
+	//Experimentos i
+	comparacionesTS = experimento_i_1(array10000, TS)
+	comparacionesTOS = experimento_i_2(array10000, TOS)
+	comparacionesTOQ = experimento_i_3(array10000, TOQ)
+	comparacionesABB = experimento_i_4(array10000, *ABB)
+	experimentoi = map[string]float64{
+		"TS":  float64(comparacionesTS),
+		"TOS": float64(comparacionesTOS),
+		"TOQ": float64(comparacionesTOQ),
+		"ABB": float64(comparacionesABB),
+	}
+	Item2Palabras(experimentoi, "Experimento i, 600 Elementos")
+	fmt.Println(comparacionesTS)
+	fmt.Println(comparacionesTOS)
+	fmt.Println(comparacionesTOQ)
+	fmt.Println(comparacionesABB)
+
+	//EXPERIMENTO CON 800 elementos
+	Distr = experimento_b(item1[3])
+	TS = experimento_c(item1[3])
+	TOS = experimento_d(item1[3])
+	TOQ = experimento_e(item1[3])
+	ABB = experimento_f(item1[3])
+	//experimento_g(item1[3])		//necesario item 11
+	experimento_h(Distr, "800")
+	//Experimentos i
+	comparacionesTS = experimento_i_1(array10000, TS)
+	comparacionesTOS = experimento_i_2(array10000, TOS)
+	comparacionesTOQ = experimento_i_3(array10000, TOQ)
+	comparacionesABB = experimento_i_4(array10000, *ABB)
+	experimentoi = map[string]float64{
+		"TS":  float64(comparacionesTS),
+		"TOS": float64(comparacionesTOS),
+		"TOQ": float64(comparacionesTOQ),
+		"ABB": float64(comparacionesABB),
+	}
+	Item2Palabras(experimentoi, "Experimento i, 800 Elementos")
+	fmt.Println(comparacionesTS)
+	fmt.Println(comparacionesTOS)
+	fmt.Println(comparacionesTOQ)
+	fmt.Println(comparacionesABB)
+
+	//EXPERIMENTO CON 1000 elementos
+	Distr = experimento_b(item1[4])
+	TS = experimento_c(item1[4])
+	TOS = experimento_d(item1[4])
+	TOQ = experimento_e(item1[4])
+	ABB = experimento_f(item1[4])
+	//experimento_g(item1[4])		//necesario item 11
+	experimento_h(Distr, "1000")
+	//Experimentos i
+	comparacionesTS = experimento_i_1(array10000, TS)
+	comparacionesTOS = experimento_i_2(array10000, TOS)
+	comparacionesTOQ = experimento_i_3(array10000, TOQ)
+	comparacionesABB = experimento_i_4(array10000, *ABB)
+	experimentoi = map[string]float64{
+		"TS":  float64(comparacionesTS),
+		"TOS": float64(comparacionesTOS),
+		"TOQ": float64(comparacionesTOQ),
+		"ABB": float64(comparacionesABB),
+	}
+	Item2Palabras(experimentoi, "Experimento i, 1000 Elementos")
+	fmt.Println(comparacionesTS)
+	fmt.Println(comparacionesTOS)
+	fmt.Println(comparacionesTOQ)
+	fmt.Println(comparacionesABB)
 }

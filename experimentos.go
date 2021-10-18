@@ -6,7 +6,7 @@ import (
 )
 
 func experimento_a() [][]int {
-	A := gen_array(100)
+	A := gen_array(200)
 	B := gen_array(400)
 	C := gen_array(600)
 	D := gen_array(800)
@@ -23,27 +23,28 @@ func experimento_b(arrayA []int) [54]int {
 	return aparitions
 }
 
-func experimento_c(arrayA []int) {
+func experimento_c(arrayA []int) []int {
 	var TS []int
 	for k := range arrayA {
-		fmt.Println(item3(&TS, arrayA[k]))
-		//fmt.Println(TS[:])
+		item3(&TS, arrayA[k])
 	}
-
+	return TS
 }
 
-func experimento_d(arrayA []int) {
+func experimento_d(arrayA []int) []int {
 	//EXPERIMENTO D
 	TOS := arrayA
-	selectionsort(TOS)
+	TOS = selectionsort(TOS)
 	fmt.Println("\n--- Ordenados ---\n\n", TOS)
+	return TOS
 }
 
-func experimento_e(arrayA []int) {
+func experimento_e(arrayA []int) []int {
 	//EXPERIMENTO E
 	TOQ := arrayA
-	quicksort(TOQ)
+	TOQ = quicksort(TOQ)
 	fmt.Println("\n--- Ordenados ---\n\n", TOQ)
+	return TOQ
 }
 
 func experimento_f(arrayA []int) *BinaryTree {
@@ -61,7 +62,6 @@ func experimento_h(Distr [54]int, num string) {
 	for k := range Distr {
 		values[k] = float64(Distr[k])
 	}
-	fmt.Println(Distr)
 	Item2(values, "Distr, "+num+" Elementos")
 }
 
@@ -79,9 +79,10 @@ func experimento_i_1(arr_generado []int, arr_busqueda []int) int {
 //Using the item6, search in array 10000 values, get the number of comparisons
 func experimento_i_2(arr_generado []int, arr_busqueda []int) int {
 	var counter int
-	var temp int
+	//variable := "hi"
 	for k := range arr_generado {
-		_, temp = Item7(arr_busqueda, len(arr_generado), arr_generado[k], counter)
+		temp := 0
+		_, temp = Item7(arr_busqueda, len(arr_busqueda)-1, arr_generado[k], temp)
 		counter += temp
 	}
 	return counter
@@ -91,7 +92,8 @@ func experimento_i_2(arr_generado []int, arr_busqueda []int) int {
 func experimento_i_3(arreglo []int, busqueda []int) int {
 	var comparisons int
 	for k := range arreglo {
-		_, aux := Item7(busqueda, len(arreglo), arreglo[k], comparisons)
+		aux := 0
+		_, aux = Item7(busqueda, len(busqueda)-1, arreglo[k], aux)
 		comparisons += aux
 	}
 	return comparisons

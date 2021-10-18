@@ -41,3 +41,37 @@ func Item2(values map[int]float64, title string) {
 	defer f.Close()
 	graph.Render(chart.PNG, f)
 }
+
+// To graphic results, receive a map to create bar chart->  (label)Key: string, (value)value: float64
+func Item2Palabras(values map[string]float64, title string) {
+
+	//Sort of the Numbers in the map
+	keys := make([]string, 0, len(values))
+	for k := range values {
+		keys = append(keys, k)
+	}
+
+	//Adding the values to the Bar Values List
+	var charValues []chart.Value
+	for l, k := range keys {
+		valV := values[k]
+		valL := keys[l] //?
+		charValues = append(charValues, chart.Value{Label: valL, Value: valV})
+	}
+
+	graph := chart.BarChart{
+		Title: title,
+		Background: chart.Style{
+			Padding: chart.Box{
+				Top: 40,
+			},
+		},
+		Height:   512,
+		BarWidth: 60,
+		Bars:     charValues,
+	}
+
+	f, _ := os.Create(title + "_output.png")
+	defer f.Close()
+	graph.Render(chart.PNG, f)
+}
