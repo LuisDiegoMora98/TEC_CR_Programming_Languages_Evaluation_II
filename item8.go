@@ -32,3 +32,24 @@ func print(w io.Writer, node *BinaryNode, ns int, ch rune) {
 	print(w, node.left, ns+2, 'L')
 	print(w, node.right, ns+2, 'R')
 }
+
+func findHeight(node *BinaryNode) int {
+	if node == nil {
+		return -1
+	}
+	lefth := findHeight(node.left)
+	righth := findHeight(node.right)
+
+	if lefth > righth {
+		return lefth + 1
+	} else {
+		return righth + 1
+	}
+}
+
+func (tree *BinaryTree) treeDensity(nodeNumber int) int {
+	treeHeight := findHeight(tree.root)
+	fmt.Println("Altura: ", treeHeight)
+	fmt.Println("Densidad: ", nodeNumber/treeHeight)
+	return nodeNumber / treeHeight
+}
