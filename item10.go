@@ -2,7 +2,7 @@ package main
 
 // Item 10
 func (tree *BinaryTree) search(searchValue int) (bool, int) {
-	comparisons := 1
+	comparisons := 0
 	answer := false
 	if tree.root != nil {
 		answer, comparisons = tree.root.search(searchValue, comparisons, answer)

@@ -7,7 +7,7 @@ package main
 // insert comparisons starts in 1, and ++ every recurrent insert
 // receive the newValue and ,by reference the tree, returns the node itself and the comparisons number
 func (tree *BinaryTree) insert(newValue int) (*BinaryTree, int) {
-	comparisons := 1
+	comparisons := 0
 	if tree.root == nil {
 		tree.root = &BinaryNode{value: newValue, parent: nil, left: nil, right: nil}
 	} else {

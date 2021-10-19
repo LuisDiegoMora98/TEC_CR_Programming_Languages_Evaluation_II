@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func experimento_a() [][]int {
@@ -25,15 +26,17 @@ func experimento_b(arrayA []int) [54]int {
 
 func experimento_c(arrayA []int) []int {
 	var TS []int
+	var insertions []int
 	for k := range arrayA {
-		item3(&TS, arrayA[k])
+		insertions = append(insertions, item3(&TS, arrayA[k]))
 	}
+	experimento_h(experimento_b(insertions), "Inserciones Lineales "+strconv.Itoa(len(arrayA)))
 	return TS
 }
 
 func experimento_d(arrayA []int) []int {
 	//EXPERIMENTO D
-	TOS := arrayA
+	var TOS = make([]int, len(arrayA))
 	TOS = selectionsort(TOS)
 	fmt.Println("\n--- Ordenados ---\n\n", TOS)
 	return TOS
@@ -41,7 +44,7 @@ func experimento_d(arrayA []int) []int {
 
 func experimento_e(arrayA []int) []int {
 	//EXPERIMENTO E
-	TOQ := arrayA
+	var TOQ = make([]int, len(arrayA))
 	TOQ = quicksort(TOQ)
 	fmt.Println("\n--- Ordenados ---\n\n", TOQ)
 	return TOQ
@@ -50,8 +53,8 @@ func experimento_e(arrayA []int) []int {
 func experimento_f(arrayA []int) *BinaryTree {
 	//EXPERIMENTO F
 	Abb := &BinaryTree{}
-	for _, value := range arrayA {
-		Abb.insert(value)
+	for i := 0; i < len(arrayA); i++ {
+		Abb.insert(arrayA[i])
 	}
 	print(os.Stdout, Abb.root, 0, 'M')
 	return Abb
@@ -62,49 +65,66 @@ func experimento_h(Distr [54]int, num string) {
 	for k := range Distr {
 		values[k] = float64(Distr[k])
 	}
-	Item2(values, "Distr, "+num+" Elementos")
+	Item2(values, num+" Elementos")
 }
 
 //Using the item6, search in array 10000 values, get the number of comparisons
-func experimento_i_1(arr_generado []int, arr_busqueda []int) int {
+func experimento_i_1(arr_generado []int, arr_busqueda []int, num string) int {
 	var counter int
 	var temp int
+	var comparisons []int
 	for k := range arr_generado {
-		_, temp = Item6(arr_busqueda, len(arr_generado), arr_generado[k])
+		_, temp = Item6(arr_busqueda, len(arr_busqueda)-1, arr_generado[k])
 		counter += temp
+		comparisons = append(comparisons, temp)
 	}
+	experimento_h(experimento_b(comparisons), "Busqueda de 10000 Elementos en TS de "+num)
 	return counter
 }
 
-//Using the item6, search in array 10000 values, get the number of comparisons
-func experimento_i_2(arr_generado []int, arr_busqueda []int) int {
+//Using the item7, search in array 10000 values, get the number of comparisons
+func experimento_i_2(arr_generado []int, arr_busqueda []int, num string) int {
 	var counter int
 	//variable := "hi"
+	var comparisons []int
 	for k := range arr_generado {
 		temp := 0
 		_, temp = Item7(arr_busqueda, len(arr_busqueda)-1, arr_generado[k], temp)
 		counter += temp
+		comparisons = append(comparisons, temp)
 	}
+	experimento_h(experimento_b(comparisons), "Busqueda de 10000 Elementos en TOS de "+num)
 	return counter
 }
 
 //Using the item7, search in a sorted array via quicksort for 10000 values, get the number of comparisons
-func experimento_i_3(arreglo []int, busqueda []int) int {
+func experimento_i_3(arreglo []int, busqueda []int, num string) int {
 	var comparisons int
+	var comparisonsList []int
 	for k := range arreglo {
-		aux := 0
-		_, aux = Item7(busqueda, len(busqueda)-1, arreglo[k], aux)
-		comparisons += aux
+		temp := 0
+		_, temp = Item7(busqueda, len(busqueda)-1, arreglo[k], temp)
+		comparisons += temp
+		comparisonsList = append(comparisonsList, temp)
 	}
+	experimento_h(experimento_b(comparisonsList), "Busqueda de 10000 Elementos en TOQ de "+num)
 	return comparisons
 }
 
 //Using the item10, search in a binary tree 10000 values, get the number of comparisons
-func experimento_i_4(arreglo []int, tree BinaryTree) int {
+func experimento_i_4(arreglo []int, tree BinaryTree, num string) int {
 	var comparisons int
-	for k := range arreglo {
-		_, aux := tree.search(arreglo[k])
-		comparisons += aux
+	var comparisonsList []int
+	for i := 0; i < len(arreglo); i++ {
+		_, temp := tree.search(arreglo[i])
+		comparisons += temp
+		comparisonsList = append(comparisonsList, temp)
 	}
+	/*for k := range arreglo {
+		_, temp := tree.search(arreglo[k])
+		comparisons += temp
+		comparisonsList = append(comparisonsList,temp)
+	}*/
+	experimento_h(experimento_b(comparisonsList), "Busqueda de 10000 Elementos en ABB de "+num)
 	return comparisons
 }

@@ -13,7 +13,9 @@ func Item2(values map[int]float64, title string) {
 	//Sort of the Numbers in the map
 	keys := make([]int, 0, len(values))
 	for k := range values {
-		keys = append(keys, k)
+		if values[k] != 0 { // this statement will change on convenience of the chart
+			keys = append(keys, k)
+		}
 	}
 	sort.Ints(keys)
 
@@ -33,7 +35,7 @@ func Item2(values map[int]float64, title string) {
 			},
 		},
 		Height:   512,
-		BarWidth: 60,
+		BarWidth: 60, // This value will change on convenience of the chart
 		Bars:     charValues,
 	}
 
