@@ -31,6 +31,11 @@ func main() {
 	TOQ := experimento_e(item1[0])
 	ABB := experimento_f(item1[0])
 
+	ABBHD := map[string]float64{
+		"200 Height":  float64(findHeight(ABB.root)),
+		"200 Density": float64(ABB.treeDensity(54)),
+	}
+
 	fmt.Println("TAMA;O DE TS ", len(item1[0]))
 	//experimento_g(item1[0])		//necesario item 11
 	experimento_h(Distr, "Distr 200")
@@ -53,6 +58,8 @@ func main() {
 	TOS = experimento_d(item1[1])
 	TOQ = experimento_e(item1[1])
 	ABB = experimento_f(item1[1])
+	ABBHD["400 Height"] = float64(findHeight(ABB.root))
+	ABBHD["400 Density"] = float64(ABB.treeDensity(54))
 	//experimento_g(item1[1])		//necesario item 11
 	experimento_h(Distr, "Distr 400")
 	//Experimentos i
@@ -78,6 +85,8 @@ func main() {
 	TOS = experimento_d(item1[2])
 	TOQ = experimento_e(item1[2])
 	ABB = experimento_f(item1[2])
+	ABBHD["600 Height"] = float64(findHeight(ABB.root))
+	ABBHD["600 Density"] = float64(ABB.treeDensity(54))
 	//experimento_g(item1[2])		//necesario item 11
 	experimento_h(Distr, "Distr 600")
 	//Experimentos i
@@ -103,6 +112,8 @@ func main() {
 	TOS = experimento_d(item1[3])
 	TOQ = experimento_e(item1[3])
 	ABB = experimento_f(item1[3])
+	ABBHD["800 Height"] = float64(findHeight(ABB.root))
+	ABBHD["800 Density"] = float64(ABB.treeDensity(54))
 	//experimento_g(item1[3])		//necesario item 11
 	experimento_h(Distr, "Distr 800")
 	//Experimentos i
@@ -128,6 +139,8 @@ func main() {
 	TOS = experimento_d(item1[4])
 	TOQ = experimento_e(item1[4])
 	ABB = experimento_f(item1[4])
+	ABBHD["1000 Height"] = float64(findHeight(ABB.root))
+	ABBHD["1000 Density"] = float64(ABB.treeDensity(54))
 	//experimento_g(item1[4])		//necesario item 11
 	experimento_h(Distr, "Distr 1000")
 	//Experimentos i
@@ -146,6 +159,8 @@ func main() {
 	fmt.Println(comparacionesTOS)
 	fmt.Println(comparacionesTOQ)
 	fmt.Println(comparacionesABB)
+
+	Item2Palabras(ABBHD, "Alturas y Densidades de los árboles")
 
 	//findHeight(ABB.root)
 	//ABB.treeDensity(1000)

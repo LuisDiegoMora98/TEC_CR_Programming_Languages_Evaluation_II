@@ -1,3 +1,5 @@
+//CÓDIGO FUNCIONAL HASTA treeToVine
+
 package main
 
 import (
@@ -38,6 +40,7 @@ func Item11() {
 
 }
 
+//Takes a tree root and turn the tree into an ordered right branch
 func treeToVine(pRoot *BinaryNode) *BinaryNode {
 	temp := pRoot
 	for temp != nil {
@@ -64,6 +67,8 @@ Function CreateBalancedTree(int numOfNodes){
 		make m left rotations starting from the top of the backbone
 }*/
 
+//NO FUNCTIONAL
+//Takes a right branched tree and makes the necessary rotations to make the almost perfect tree
 func vineToTree(pRoot *BinaryTree, pTreeSize int) BinaryTree {
 	lowerQuasiHeight := math.Floor(math.Log2(float64(pTreeSize + 1))) //this gets the Tree height rounding down
 	upperQuasiHeight := math.Ceil(math.Log2(float64(pTreeSize + 1)))  //same but rounding up
@@ -90,7 +95,6 @@ func vineToTree(pRoot *BinaryTree, pTreeSize int) BinaryTree {
 		rightRotations--
 	}
 	return *pRoot
-
 }
 
 func rightRotation(pRoot *BinaryNode, pChild *BinaryNode) *BinaryNode {
@@ -121,7 +125,6 @@ func leftRotation(pRoot *BinaryNode, pChild *BinaryNode) *BinaryNode {
 	pChild.left = pRoot
 	pChild.right = nil
 	return pChild.right
-
 }
 
 //Ches
