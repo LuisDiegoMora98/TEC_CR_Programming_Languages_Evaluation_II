@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"strconv"
 )
 
@@ -37,6 +36,7 @@ func experimento_c(arrayA []int) []int {
 func experimento_d(arrayA []int) []int {
 	//EXPERIMENTO D
 	var TOS = make([]int, len(arrayA))
+	copy(TOS, arrayA)
 	TOS = selectionsort(TOS)
 	fmt.Println("\n--- Ordenados ---\n\n", TOS)
 	return TOS
@@ -45,6 +45,7 @@ func experimento_d(arrayA []int) []int {
 func experimento_e(arrayA []int) []int {
 	//EXPERIMENTO E
 	var TOQ = make([]int, len(arrayA))
+	copy(TOQ, arrayA)
 	TOQ = quicksort(TOQ)
 	fmt.Println("\n--- Ordenados ---\n\n", TOQ)
 	return TOQ
@@ -52,11 +53,14 @@ func experimento_e(arrayA []int) []int {
 
 func experimento_f(arrayA []int) *BinaryTree {
 	//EXPERIMENTO F
+	var insertions []int
 	Abb := &BinaryTree{}
 	for i := 0; i < len(arrayA); i++ {
-		Abb.insert(arrayA[i])
+		_, temp := Abb.insert(arrayA[i])
+		insertions = append(insertions, temp)
 	}
-	print(os.Stdout, Abb.root, 0, 'M')
+	//print(os.Stdout, Abb.root, 0, 'M')
+	experimento_h(experimento_b(insertions), "Inserciones ABB "+strconv.Itoa(len(arrayA)))
 	return Abb
 }
 
@@ -74,7 +78,7 @@ func experimento_i_1(arr_generado []int, arr_busqueda []int, num string) int {
 	var temp int
 	var comparisons []int
 	for k := range arr_generado {
-		_, temp = Item6(arr_busqueda, len(arr_busqueda)-1, arr_generado[k])
+		_, temp = Item6(arr_busqueda, len(arr_busqueda), arr_generado[k])
 		counter += temp
 		comparisons = append(comparisons, temp)
 	}
@@ -89,7 +93,7 @@ func experimento_i_2(arr_generado []int, arr_busqueda []int, num string) int {
 	var comparisons []int
 	for k := range arr_generado {
 		temp := 0
-		_, temp = Item7(arr_busqueda, len(arr_busqueda)-1, arr_generado[k], temp)
+		_, temp = Item7(arr_busqueda, len(arr_busqueda), arr_generado[k], temp)
 		counter += temp
 		comparisons = append(comparisons, temp)
 	}
@@ -103,7 +107,7 @@ func experimento_i_3(arreglo []int, busqueda []int, num string) int {
 	var comparisonsList []int
 	for k := range arreglo {
 		temp := 0
-		_, temp = Item7(busqueda, len(busqueda)-1, arreglo[k], temp)
+		_, temp = Item7(busqueda, len(busqueda), arreglo[k], temp)
 		comparisons += temp
 		comparisonsList = append(comparisonsList, temp)
 	}

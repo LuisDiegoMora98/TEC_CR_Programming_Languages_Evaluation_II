@@ -35,7 +35,7 @@ func Item2(values map[int]float64, title string) {
 			},
 		},
 		Height:   512,
-		BarWidth: 60, // This value will change on convenience of the chart
+		BarWidth: 80, // This value will change on convenience of the chart
 		Bars:     charValues,
 	}
 
